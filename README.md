@@ -13,15 +13,24 @@ npm install --save react-datatable-pager-lite
 ## Usage
 
 ```jsx
-import React, { Component } from 'react'
 
-import MyComponent from 'react-datatable-pager-lite'
+import DataTable from 'react-datatable-pager-lite'
 import 'react-datatable-pager-lite/dist/index.css'
-
-class Example extends Component {
-  render() {
-    return <MyComponent />
+const App = () => {
+  const columns = {
+    { title: 'Col 1', data: 'col1' },
+    { title: 'Col 2', data: 'col2' },
   }
+  const list = [
+    {col1:'dog', col2:'female'},
+    {col1:'cat', col2:'male'},
+  ]
+  return(<>
+      <DataTable
+        columns={columns}
+        dataList={list}
+        name='my-table'
+      /></>)
 }
 ```
 
