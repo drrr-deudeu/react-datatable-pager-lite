@@ -1,10 +1,18 @@
 {
   "name": "react-datatable-pager-lite",
-  "version": "1.1.2",
+  "version": "1.1.4",
   "description": "react Datatable component with pager, sortable columns and a search field filter",
   "author": "drrr-deudeu",
   "license": "MIT",
   "repository": "drrr-deudeu/react-datatable-pager-lite",
+  "keywords": [
+    "react",
+    "Datatables",
+    "table",
+    "filter",
+    "sort",
+    "pager"
+  ],
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.js",
