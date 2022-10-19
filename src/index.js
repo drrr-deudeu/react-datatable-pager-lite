@@ -26,7 +26,7 @@ export const DataTable = (props) => {
   // const [viewList, setViewList] = React.useState(listSort(0, true, dataList))
   const [viewList, setViewList] = React.useState(firstSort(dataList))
   const [searchString, setSearchString] = React.useState('')
-  const [pageSize, setPageSize] = React.useState(10)
+  const [pageSize, setPageSize] = React.useState(5)
   const [page, setPage] = React.useState(0)
   const [startIndex, setStartIndex] = React.useState(0)
   const ee = Math.min(viewList.length, pageSize)
@@ -52,7 +52,7 @@ export const DataTable = (props) => {
       })
     )
     setViewList(list)
-    getIndexes(list.length, pageSize)
+    // getIndexes(list.length, pageSize)
   }
 
   const columnsLength = columns.length
@@ -83,7 +83,7 @@ export const DataTable = (props) => {
   const handleSelect = (e) => {
     e.preventDefault()
     setPageSize(e.target.value)
-    getIndexes(viewList.length, e.target.value)
+    //    getIndexes(viewList.length, e.target.value)
   }
   function getNbPages(length, localPageSize) {
     return ~~(length / localPageSize) + (length % localPageSize ? 1 : 0)
@@ -93,7 +93,10 @@ export const DataTable = (props) => {
       const localNbPages = getNbPages(length, localPageSize)
       const currentPage = page >= localNbPages ? 0 : page
       const localStartIndex = currentPage * localPageSize
-      const localEndIndex = Math.min(localStartIndex + localPageSize, length)
+      const localEndIndex = Math.min(
+        parseInt(localStartIndex) + parseInt(localPageSize),
+        length
+      )
       setPage(currentPage)
       setStartIndex(localStartIndex)
       setEndIndex(localEndIndex)
@@ -107,6 +110,7 @@ export const DataTable = (props) => {
   }, [
     sortChoice,
     viewList,
+    viewList.length,
     columns,
     page,
     startIndex,
@@ -126,6 +130,7 @@ export const DataTable = (props) => {
             className=''
             onChange={handleSelect}
           >
+            <option value='5'>5</option>
             <option value='10'>10</option>
             <option value='25'>25</option>
             <option value='50'>50</option>
