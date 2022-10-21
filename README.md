@@ -30,11 +30,15 @@ const App = () => {
     {col1:'dog', col2:'female'},
     {col1:'cat', col2:'male'},
   ]
+  const rowsPerPage = [10, 25, 50, 100]
+
   return(<>
       <DataTable
         columns={columns}
         dataList={list}
         name='my-table'
+        rowsPerPage={rowsPerPage[0]}
+        rowsPossibleUserChoice={rowsPerPage}
       /></>)
 }
 ```

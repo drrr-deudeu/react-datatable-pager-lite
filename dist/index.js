@@ -139,7 +139,9 @@ function Paging(props) {
 var DataTable = function DataTable(props) {
   var columns = props.columns,
     dataList = props.dataList,
-    name = props.name;
+    name = props.name,
+    rowsPerPage = props.rowsPerPage,
+    rowsPossibleUserChoice = props.rowsPossibleUserChoice;
   var listSort = function listSort(column, sortDirection, list) {
     return list.sort(function (a, b) {
       var A = normalizeString(a[columns[column].data]);
@@ -162,7 +164,7 @@ var DataTable = function DataTable(props) {
   var _React$useState4 = React__default.useState(''),
     searchString = _React$useState4[0],
     setSearchString = _React$useState4[1];
-  var _React$useState5 = React__default.useState(5),
+  var _React$useState5 = React__default.useState(rowsPerPage),
     pageSize = _React$useState5[0],
     setPageSize = _React$useState5[1];
   var _React$useState6 = React__default.useState(0),
@@ -249,17 +251,12 @@ var DataTable = function DataTable(props) {
     "aria-controls": name,
     className: "",
     onChange: handleSelect
-  }, /*#__PURE__*/React__default.createElement("option", {
-    value: "5"
-  }, "5"), /*#__PURE__*/React__default.createElement("option", {
-    value: "10"
-  }, "10"), /*#__PURE__*/React__default.createElement("option", {
-    value: "25"
-  }, "25"), /*#__PURE__*/React__default.createElement("option", {
-    value: "50"
-  }, "50"), /*#__PURE__*/React__default.createElement("option", {
-    value: "100"
-  }, "100")), "entries")), /*#__PURE__*/React__default.createElement("div", {
+  }, rowsPossibleUserChoice.map(function (num, ind) {
+    return /*#__PURE__*/React__default.createElement("option", {
+      key: ind,
+      value: num
+    }, num, ' ');
+  })), "entries")), /*#__PURE__*/React__default.createElement("div", {
     id: name + '_filter',
     className: styles.dataTables_filter
   }, /*#__PURE__*/React__default.createElement("label", null, "Search:", /*#__PURE__*/React__default.createElement("input", {

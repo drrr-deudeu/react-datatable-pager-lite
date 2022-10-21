@@ -133,7 +133,9 @@ const DataTable = props => {
   const {
     columns,
     dataList,
-    name
+    name,
+    rowsPerPage,
+    rowsPossibleUserChoice
   } = props;
   const listSort = (column, sortDirection, list) => {
     return list.sort((a, b) => {
@@ -149,7 +151,7 @@ const DataTable = props => {
   const [sortChoice, setSortChoice] = React__default.useState(true);
   const [viewList, setViewList] = React__default.useState(firstSort(dataList));
   const [searchString, setSearchString] = React__default.useState('');
-  const [pageSize, setPageSize] = React__default.useState(5);
+  const [pageSize, setPageSize] = React__default.useState(rowsPerPage);
   const [page, setPage] = React__default.useState(0);
   const [startIndex, setStartIndex] = React__default.useState(0);
   const ee = Math.min(viewList.length, pageSize);
@@ -226,17 +228,10 @@ const DataTable = props => {
     "aria-controls": name,
     className: "",
     onChange: handleSelect
-  }, /*#__PURE__*/React__default.createElement("option", {
-    value: "5"
-  }, "5"), /*#__PURE__*/React__default.createElement("option", {
-    value: "10"
-  }, "10"), /*#__PURE__*/React__default.createElement("option", {
-    value: "25"
-  }, "25"), /*#__PURE__*/React__default.createElement("option", {
-    value: "50"
-  }, "50"), /*#__PURE__*/React__default.createElement("option", {
-    value: "100"
-  }, "100")), "entries")), /*#__PURE__*/React__default.createElement("div", {
+  }, rowsPossibleUserChoice.map((num, ind) => /*#__PURE__*/React__default.createElement("option", {
+    key: ind,
+    value: num
+  }, num, ' '))), "entries")), /*#__PURE__*/React__default.createElement("div", {
     id: name + '_filter',
     className: styles.dataTables_filter
   }, /*#__PURE__*/React__default.createElement("label", null, "Search:", /*#__PURE__*/React__default.createElement("input", {

@@ -10,7 +10,7 @@ import styles from './styles.module.css'
 // import './datatables.css'
 import Paging from './Paging'
 export const DataTable = (props) => {
-  const { columns, dataList, name } = props
+  const { columns, dataList, name, rowsPerPage, rowsPossibleUserChoice } = props
   const listSort = (column, sortDirection, list) => {
     return list.sort((a, b) => {
       const A = normalizeString(a[columns[column].data])
@@ -26,7 +26,7 @@ export const DataTable = (props) => {
   // const [viewList, setViewList] = React.useState(listSort(0, true, dataList))
   const [viewList, setViewList] = React.useState(firstSort(dataList))
   const [searchString, setSearchString] = React.useState('')
-  const [pageSize, setPageSize] = React.useState(5)
+  const [pageSize, setPageSize] = React.useState(rowsPerPage)
   const [page, setPage] = React.useState(0)
   const [startIndex, setStartIndex] = React.useState(0)
   const ee = Math.min(viewList.length, pageSize)
@@ -130,11 +130,11 @@ export const DataTable = (props) => {
             className=''
             onChange={handleSelect}
           >
-            <option value='5'>5</option>
-            <option value='10'>10</option>
-            <option value='25'>25</option>
-            <option value='50'>50</option>
-            <option value='100'>100</option>
+            {rowsPossibleUserChoice.map((num, ind) => (
+              <option key={ind} value={num}>
+                {num}{' '}
+              </option>
+            ))}
           </select>
           entries
         </label>
